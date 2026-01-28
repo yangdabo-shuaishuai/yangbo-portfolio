@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杨博 - 工业设计师 & 创业者</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #151515;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #ff6b35;
+            --accent-hover: #ff8555;
+            --card-bg: #1a1a1a;
+            --border: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 背景装饰 */
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.03;
+            background: 
+                radial-gradient(circle at 20% 30%, var(--accent) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, #4ecdc4 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 导航 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 5rem;
+            position: relative;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-label {
+            display: inline-block;
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 4rem;
+            margin-top: 3rem;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: left;
+        }
+
+        .section-label {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .info-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .info-list li {
+            display: flex;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .info-list strong {
+            color: var(--text-primary);
+            min-width: 120px;
+            font-weight: 600;
+        }
+
+        /* Awards Grid */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .award-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .award-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+            transform: scaleY(0);
+            transition: transform 0.3s;
+        }
+
+        .award-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .award-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .award-date {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .award-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .project-date {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .project-role {
+            background: var(--bg-secondary);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--bg-primary);
+        }
+
+        .timeline-date {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent);
+            transform: scale(1.02);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        .contact-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid,
+            .awards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decoration"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">杨博</div>
+            <ul class="nav-links">
+                <li><a href="#about">关于</a></li>
+                <li><a href="#awards">荣誉</a></li>
+                <li><a href="#projects">项目</a></li>
+                <li><a href="#experience">经历</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-label">工业设计师 · 创业者</div>
+                <h1>杨博</h1>
+                <p>用设计改变世界，以创新驱动未来。武汉工程大学工业设计专业学生，天拾科技创始人，专注于产品设计与商业创新。</p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">获奖项目</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">商业项目</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">创业团队</div>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">查看项目</a>
+                    <a href="#contact" class="btn btn-secondary">联系我</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">关于我</div>
+                <h2 class="section-title">设计师 & 创业者</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text fade-in">
+                    <p>我是杨博，来自安徽桐城，目前就读于武汉工程大学艺术设计学院工业设计专业。作为一名00后设计师，我热衷于将创意转化为商业价值。</p>
+                    <p>从高中时期的体育委员到大学的创业者，我始终保持着对挑战的热情。2025年9月，我创立了武汉天拾科技有限公司，并成功入驻武汉工程大学创业孵化基地。</p>
+                    <p>我的设计作品曾入选2025武汉国际工业设计博览会，并在多项国家级、省级竞赛中获奖。我相信好的设计不仅要美观，更要能解决实际问题，创造真正的价值。</p>
+                </div>
+                <div class="fade-in">
+                    <ul class="info-list">
+                        <li><strong>姓名</strong> 杨博</li>
+                        <li><strong>出生年月</strong> 2006年4月</li>
+                        <li><strong>学校</strong> 武汉工程大学</li>
+                        <li><strong>专业</strong> 工业设计</li>
+                        <li><strong>年级</strong> 2024级</li>
+                        <li><strong>电话</strong> 19718997981</li>
+                        <li><strong>兴趣</strong> 篮球、阅读</li>
+                        <li><strong>身高</strong> 182cm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">荣誉成就</div>
+                <h2 class="section-title">获奖记录</h2>
+                <p class="section-subtitle">在设计与创新领域的持续探索</p>
+            </div>
+            <div class="awards-grid">
+                <div class="award-card fade-in">
+                    <div class="award-date">2026年1月</div>
+                    <div class="award-title">智能泡茶器产品入选2025武汉国际工业设计博览会"工业设计产教融合"专题展区</div>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-date">2025年11月</div>
+                    <div class="award-title">秋叶AI创意挑战赛全国三等奖</div>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-date">2025年9月</div>
+                    <div class="award-title">东方好创意大赛省赛银奖</div>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-date">2025年8月</div>
+                    <div class="award-title">光路"童"行项目国创赛省金</div>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-date">2025年7月</div>
+                    <div class="award-title">烽火匠心_军工文化数字化发展项目国创赛校赛金奖（队长）</div>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-date">2025年7月</div>
+                    <div class="award-title">烙画传承项目国创赛校赛金奖</div>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-date">2024年12月</div>
+                    <div class="award-title">工行杯金融科技大赛校级三等奖</div>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-date">2024年11月</div>
+                    <div class="award-title">篮球新生杯冠军并获MVP</div>
+                </div>
+                <div class="award-card fade-in">
+                    <div class="award-date">2024年10月</div>
+                    <div class="award-title">新生军训优秀学员</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">商业项目</div>
+                <h2 class="section-title">实践经验</h2>
+                <p class="section-subtitle">从概念到落地，创造真实价值</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <div class="project-date">2026.01</div>
+                            <div class="project-role">实习生</div>
+                        </div>
+                        <div class="project-title">秋叶实训平台搭建</div>
+                        <div class="project-description">进入武汉秋叶教育科技有限公司实习，参与「秋叶实训平台」搭建</div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <div class="project-date">2025.12</div>
+                            <div class="project-role">设计师</div>
+                        </div>
+                        <div class="project-title">恩施黄四姐IP打造</div>
+                        <div class="project-description">参与恩施黄四姐IP打造项目，负责品牌视觉设计</div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <div class="project-date">2025.12</div>
+                            <div class="project-role">项目负责人</div>
+                        </div>
+                        <div class="project-title">宁波德萨PTC暖风机设计</div>
+                        <div class="project-description">工业风格PTC暖风机产品设计，从概念到生产落地</div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <div class="project-date">2025.11</div>
+                            <div class="project-role">设计师</div>
+                        </div>
+                        <div class="project-title">甲壳虫蒸汽清洗机项目</div>
+                        <div class="project-description">为甲壳虫电器公司设计蒸汽清洗机产品</div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <div class="project-date">2025.11</div>
+                            <div class="project-role">项目负责人</div>
+                        </div>
+                        <div class="project-title">久灸华康艾灸贴包装设计</div>
+                        <div class="project-description">完成艾灸贴产品包装设计并成功交付</div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <div class="project-date">2025.09</div>
+                            <div class="project-role">创始人</div>
+                        </div>
+                        <div class="project-title">武汉天拾科技有限公司</div>
+                        <div class="project-description">创立公司并成功入驻武汉工程大学创业孵化基地</div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <div class="project-date">2025.08</div>
+                            <div class="project-role">项目负责人</div>
+                        </div>
+                        <div class="project-title">校园自助咖啡机项目</div>
+                        <div class="project-description">与湖北瑞畅达商贸有限公司合作，开展校园自助咖啡机项目</div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <div class="project-date">2024.11</div>
+                            <div class="project-role">创始人</div>
+                        </div>
+                        <div class="project-title">蝶变·栖木咖啡厅</div>
+                        <div class="project-description">创办校园咖啡厅，打造学生社交空间</div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <div class="project-date">2024.11</div>
+                            <div class="project-role">创始人</div>
+                        </div>
+                        <div class="project-title">浔墨工作室</div>
+                        <div class="project-description">成立设计工作室，承接各类设计项目</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">学生工作</div>
+                <h2 class="section-title">校园经历</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">2024年10月 - 至今</div>
+                    <div class="timeline-title">武汉工程大学AIC信息分中心信息员</div>
+                    <div class="timeline-description">负责信息收集、处理与传递工作</div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">2024年9月 - 至今</div>
+                    <div class="timeline-title">艺术设计学院工设二班学习委员</div>
+                    <div class="timeline-description">协助老师管理班级学习事务，组织学习活动</div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">2024年9月 - 至今</div>
+                    <div class="timeline-title">泰塑公寓416寝室长</div>
+                    <div class="timeline-description">负责寝室日常管理与协调工作</div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">2022年9月 - 2024年5月</div>
+                    <div class="timeline-title">安徽省桐城中学跑操队领队</div>
+                    <div class="timeline-description">带领全校跑操队，培养团队协作能力</div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-date">2021年9月 - 2024年5月</div>
+                    <div class="timeline-title">桐城中学13班体育委员兼纪律委员</div>
+                    <div class="timeline-description">组织班级体育活动，维护班级纪律</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-content fade-in">
+                <div class="section-label">联系方式</div>
+                <h2 class="section-title">让我们一起创造</h2>
+                <p class="section-subtitle">期待与你交流合作，共同探索设计与商业的无限可能</p>
+                
+                <div class="contact-info">
+                    <a href="tel:19718997981" class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <span class="contact-text">19718997981</span>
+                    </a>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span class="contact-text">武汉工程大学 · 艺术设计学院</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🏢</span>
+                        <span class="contact-text">武汉天拾科技有限公司</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 杨博 Yang Bo. All Rights Reserved.</p>
+            <p>工业设计师 · 创业者 · 创新者</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Active nav link
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href') === `#${current}`) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
